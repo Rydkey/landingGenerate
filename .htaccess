@@ -5,15 +5,15 @@
 
 # Do the regex check against the URI here, if match, set the "require_auth" var
 
-#AuthName "Page bloque"
-#AuthType Basic
-#AuthUserFile "/home/maetva/web/landings/.htpasswd"
-#Require valid-user
+AuthName "Page bloque"
+AuthType Basic
+AuthUserFile "/home/maetva/web/landings/.htpasswd"
+Require valid-user
 
 <IfModule mod_rewrite.c>
     Options -MultiViews
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ web/app.php [QSA,L]
+    RewriteRule ^ /web/app.php [QSA,L]
 </IfModule>
 
