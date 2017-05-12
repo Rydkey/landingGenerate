@@ -130,7 +130,7 @@ $form_id = 'pf_std';
                                 <div id="div_id_username_mail" class="form-group required">
                                     <label for="id_username_mail" class="control-label col-md-4  requiredField"> Mail à afficher <span title="exemple : no-reply@example.com" class="glyphicon glyphicon-info-sign"></span> </label>
                                     <div class="controls col-md-8 ">
-                                        <input title="<?=$_SESSION[$form_id]['message_error_mail']['username']?>" <?php if (isset($_SESSION[$form_id]['field_mail']['username'])){echo 'value="'.$_SESSION[$form_id]['field_mail']['username'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_mail']['username'])){echo "alert-danger";} ?>" id="id_username_mail" maxlength="30" name="username_mail" placeholder="Mail à afficher" style="margin-bottom: 10px" type="text" />
+                                        <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_mail']['username']?>" <?php if (isset($_SESSION[$form_id]['field_mail']['username'])){echo 'value="'.$_SESSION[$form_id]['field_mail']['username'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_mail']['username'])){echo "alert-danger";} ?>" id="id_username_mail" maxlength="30" name="username_mail" placeholder="Mail à afficher" style="margin-bottom: 10px" type="text" />
                                     </div>
                                 </div>
                                 <p class="text-center">_________________________</p>
