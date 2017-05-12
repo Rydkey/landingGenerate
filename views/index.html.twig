@@ -12,10 +12,12 @@
             {{ message }}
         </div>
     {% endfor %}
-
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" name="submit" class="btn btn-lg btn-success"/>
-        {{ form_end(form) }}
-    {#{{ dump(form) }}#}
+    {% if form is empty %}
+        <h1>Le formulaire n'est pas encore renseigné</h1>
+        <p> rendez vous <a href="/generate.php">ici</a> pour effectué la génération </p>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" name="submit" class="btn btn-lg btn-success"/>
+    {{ form_end(form) }}
 {% endblock %}
