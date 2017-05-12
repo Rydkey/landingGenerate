@@ -180,19 +180,19 @@ $form_id = 'pf_std';
                         <div id="div_id_field_mail" class="form-group">
                             <label for="id_field_mail" class="control-label col-md-4">Mail</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['mail']?>" <?php if (isset($_SESSION[$form_id]['field_field']['mail'])){echo 'value="'.$_SESSION[$form_id]['field_field']['mail'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['mail'])){echo "alert-danger";} ?>" id="id_field_mail" maxlength="30" name="field_mail" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['mail']?>" <?php if (isset($_SESSION[$form_id]['field_field']['mail'])){echo 'value="'.$_SESSION[$form_id]['field_field']['mail'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['mail'])){echo "alert-danger";} ?>" id="id_field_mail" maxlength="30" name="field_mail" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_nom" class="form-group">
                             <label for="id_field_nom" class="control-label col-md-4">Nom</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['nom']?>" <?php if (isset($_SESSION[$form_id]['field_field']['nom'])){echo 'value="'.$_SESSION[$form_id]['field_field']['nom'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['nom'])){echo "alert-danger";} ?>" id="id_field_nom" maxlength="30" name="field_nom" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['nom']?>" <?php if (isset($_SESSION[$form_id]['field_field']['nom'])){echo 'value="'.$_SESSION[$form_id]['field_field']['nom'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['nom'])){echo "alert-danger";} ?>" id="id_field_nom" maxlength="30" name="field_nom" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_prenom" class="form-group">
                             <label for="id_field_prenom" class="control-label col-md-4">prenom</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['prenom']?>" <?php if (isset($_SESSION[$form_id]['field_field']['prenom'])){echo 'value="'.$_SESSION[$form_id]['field_field']['prenom'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['prenom'])){echo "alert-danger";} ?>" id="id_field_prenom" maxlength="30" name="field_prenom" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['prenom']?>" <?php if (isset($_SESSION[$form_id]['field_field']['prenom'])){echo 'value="'.$_SESSION[$form_id]['field_field']['prenom'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['prenom'])){echo "alert-danger";} ?>" id="id_field_prenom" maxlength="30" name="field_prenom" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <p class="text-center">_________________________</p>
@@ -200,25 +200,25 @@ $form_id = 'pf_std';
                         <div id="div_id_field_numeroAdresse" class="form-group">
                             <label for="id_field_numeroAdresse" class="control-label col-md-4">Numéro</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['numeroAdresse']?>" <?php if (isset($_SESSION[$form_id]['field_field']['numeroAdresse'])){echo 'value="'.$_SESSION[$form_id]['field_field']['numeroAdresse'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['numeroAdresse'])){echo "alert-danger";} ?>" id="id_field_numeroAdresse" maxlength="30" name="field_numeroAdresse" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['numeroAdresse']?>" <?php if (isset($_SESSION[$form_id]['field_field']['numeroAdresse'])){echo 'value="'.$_SESSION[$form_id]['field_field']['numeroAdresse'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['numeroAdresse'])){echo "alert-danger";} ?>" id="id_field_numeroAdresse" maxlength="30" name="field_numeroAdresse" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_voieAdresse" class="form-group">
                             <label for="id_field_voieAdresse" class="control-label col-md-4">Nom de la voie</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['voieAdresse']?>" <?php if (isset($_SESSION[$form_id]['field_field']['voieAdresse'])){echo 'value="'.$_SESSION[$form_id]['field_field']['voieAdresse'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['voieAdresse'])){echo "alert-danger";} ?>" id="id_field_voieAdresse" maxlength="30" name="field_voieAdresse" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['voieAdresse']?>" <?php if (isset($_SESSION[$form_id]['field_field']['voieAdresse'])){echo 'value="'.$_SESSION[$form_id]['field_field']['voieAdresse'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['voieAdresse'])){echo "alert-danger";} ?>" id="id_field_voieAdresse" maxlength="30" name="field_voieAdresse" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_codePostal" class="form-group">
                             <label for="id_field_codePostal" class="control-label col-md-4">Code Postal</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['codePostal']?>" <?php if (isset($_SESSION[$form_id]['field_field']['codePostal'])){echo 'value="'.$_SESSION[$form_id]['field_field']['codePostal'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['codePostal'])){echo "alert-danger";} ?>" id="id_field_codePostal" maxlength="30" name="field_codePostal" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['codePostal']?>" <?php if (isset($_SESSION[$form_id]['field_field']['codePostal'])){echo 'value="'.$_SESSION[$form_id]['field_field']['codePostal'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['codePostal'])){echo "alert-danger";} ?>" id="id_field_codePostal" maxlength="30" name="field_codePostal" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_ville" class="form-group">
                             <label for="id_field_ville" class="control-label col-md-4">Ville</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['ville']?>" <?php if (isset($_SESSION[$form_id]['field_field']['ville'])){echo 'value="'.$_SESSION[$form_id]['field_field']['ville'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['ville'])){echo "alert-danger";} ?>" id="id_field_ville" maxlength="30" name="field_ville" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['ville']?>" <?php if (isset($_SESSION[$form_id]['field_field']['ville'])){echo 'value="'.$_SESSION[$form_id]['field_field']['ville'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['ville'])){echo "alert-danger";} ?>" id="id_field_ville" maxlength="30" name="field_ville" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <p class="text-center">_________________________</p>
@@ -226,13 +226,13 @@ $form_id = 'pf_std';
                         <div id="div_id_field_telephone" class="form-group">
                             <label for="id_field_telephone" class="control-label col-md-4">Téléphone</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['telephone']?>" <?php if (isset($_SESSION[$form_id]['field_field']['telephone'])){echo 'value="'.$_SESSION[$form_id]['field_field']['telephone'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['telephone'])){echo "alert-danger";} ?>" id="id_field_telephone" maxlength="30" name="field_telephone" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['telephone']?>" <?php if (isset($_SESSION[$form_id]['field_field']['telephone'])){echo 'value="'.$_SESSION[$form_id]['field_field']['telephone'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['telephone'])){echo "alert-danger";} ?>" id="id_field_telephone" maxlength="30" name="field_telephone" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_entreprise" class="form-group">
                             <label for="id_field_entreprise" class="control-label col-md-4">Entreprise</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['entreprise']?>" <?php if (isset($_SESSION[$form_id]['field_field']['entreprise'])){echo 'value="'.$_SESSION[$form_id]['field_field']['entreprise'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['entreprise'])){echo "alert-danger";} ?>" id="id_field_entreprise" maxlength="30" name="field_entreprise" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['entreprise']?>" <?php if (isset($_SESSION[$form_id]['field_field']['entreprise'])){echo 'value="'.$_SESSION[$form_id]['field_field']['entreprise'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['entreprise'])){echo "alert-danger";} ?>" id="id_field_entreprise" maxlength="30" name="field_entreprise" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <p class="text-center">_________________________</p>
@@ -240,13 +240,13 @@ $form_id = 'pf_std';
                         <div id="div_id_field_message" class="form-group">
                             <label for="id_field_message" class="control-label col-md-4">Message</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['message']?>" <?php if (isset($_SESSION[$form_id]['field_field']['message'])){echo 'value="'.$_SESSION[$form_id]['field_field']['message'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['message'])){echo "alert-danger";} ?>" id="id_field_message" maxlength="30" name="field_message" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['message']?>" <?php if (isset($_SESSION[$form_id]['field_field']['message'])){echo 'value="'.$_SESSION[$form_id]['field_field']['message'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['message'])){echo "alert-danger";} ?>" id="id_field_message" maxlength="30" name="field_message" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_field_optionnel" class="form-group">
                             <label for="id_field_optionnel" class="control-label col-md-4">Optionnel</label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_field']['opt_in']?>" <?php if (isset($_SESSION[$form_id]['field_field']['opt_in'])){echo 'value="'.$_SESSION[$form_id]['field_field']['opt_in'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['opt_in'])){echo "alert-danger";} ?>" id="id_field_optionnel" maxlength="30" name="field_optionnel" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
+                                <input autocomplete="off" title="<?=$_SESSION[$form_id]['message_error_field']['opt_in']?>" <?php if (isset($_SESSION[$form_id]['field_field']['opt_in'])){echo 'value="'.$_SESSION[$form_id]['field_field']['opt_in'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_field']['opt_in'])){echo "alert-danger";} ?>" id="id_field_optionnel" maxlength="30" name="field_optionnel" placeholder="Nom dans la base de donnée" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <p class="text-center">_________________________</p>
@@ -254,7 +254,7 @@ $form_id = 'pf_std';
                             <p class="alert-danger text-center"><strong>Attention ! </strong> cette action est irréversible</p>
                             <div class="aab controls col-md-4 "></div>
                             <div class="controls col-md-8 ">
-                                <input type="submit" name="Signup" value="Généré" class="btn btn-primary btn btn-danger" id="submit-id-signup" onclick="return validate()" />
+                                <input autocomplete="off" type="submit" name="Signup" value="Généré" class="btn btn-primary btn btn-danger" id="submit-id-signup" onclick="return validate()" />
                             </div>
                         </div>
                     </div>
