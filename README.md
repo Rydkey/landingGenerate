@@ -6,23 +6,39 @@
     <li>Silex 2.0</li>
     <li>ORM (https://github.com/dflydev/dflydev-doctrine-orm-service-provider)</li>
 </ul>
-<h3>Fonction</h3>
+<h3>Fonctions</h3>
+    <p>Landing Generate permet de généré rapidement des landings pages avec : </p>
     <ul>
-        <li>1.0 : simple formulaire en silex avec enregistrement et envoie de mail</li>
-        <li>2.0 : permet de modifier les champs via <strong>/admin</strong></li>
-        <li>3.0 : sécurisation de <strong>/admin</strong></li>
-        <li>4.0 : simplification de la modification du formulaire</li>
-        <li>5.0 : generation automatique du formulaire</li>
+        <li>Enregistrement en base de données</li>
+        <li>Envoie de Mail soit :</li>
+            <ul>
+                <li>au mail fournit dans le formulaire</li>
+                <li>à un mail près remplit</li>
+            </ul>
+    </ul>
+    <p>avec différents champs (avec vérification) :</p>
+    <ul>
+        <li>Mail</li>
+        <li>Nom</li>
+        <li>Prénom</li>
+        <li>Adresse (numéro + nom de la voie + conde postale + ville)</li>
+        <li>Numéro de téléphone</li>
+        <li>Nom de l'entreprise</li>
+        <li>Un champ message</li>
+        <li>Optionnel (exemple : newsletters)</li>
+    </ul>
+
+<h3>Pré-requis</h3>
+    <ul>
+        <li>Avoir les droits d'aministrations</li>
+        <li>Pour l'envoie de mail, avoir un serveur capable d'envoyer des mail via php_mail</li>
     </ul>
 <h3> Installation </h3>
-<ul>
-    <li>1 -> git clone https://github.com/Rydkey/landingGenerate.git</li>
-    <li>2 -> cd landingGenerate/</li>
-    <li>3 -> composer install</li>
-    <li>4 -> composer dump-autoload</li>
-    <li>5 -> sudo chmod 777 src/</li>
-    <li>6 -> sudo chmod 777 R src/</li>
-    <li>7 -> sudo chmod 777 app/config/prod.php</li>
-</ul>
-<h2>Anglais</h2>
-<p>Project realised during an internship in Maetva : http://www.maetva.com/<p>
+
+    $ git clone https://github.com/Rydkey/landingGenerate.git
+    $ cd landingGenerate/
+    $ composer install
+    $ composer dump-autoload
+    $ sudo chmod 777 src/
+    $ sudo chmod 777 -R src/
+    $ sudo chmod 777 app/config/prod.php
