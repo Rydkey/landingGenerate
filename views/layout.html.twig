@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css','css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/microcms.css','css') }}" rel="stylesheet">
+    <title>Landing Framwork</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">Landing Framework</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-target">
+            </div>
+        </div><!-- /.container -->
+    </nav>
+
+    <div class="container page">
+        <div class="col-lg-6 col-lg-offset-3 content">
+            <hr>
+            {% block content %}
+                {#C'est ici que sera integerer le contenue de la page#}
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="http://www.maetva.com/">Maetva Planet</a> | Framework réaliser en silex par Rémy Risser
+    </footer>
+</body>
+</html>

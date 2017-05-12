@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+{#mettre le contenue de la page dans les balises block#}
+
+{#notifications#}
+
+{% block content %}
+    {% for message in app.session.getFlashBag.get('notice') %}
+        <div class = "alert alert-success alert-dismissable">
+            <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">
+                &times;
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" name="submit" class="btn btn-lg btn-success"/>
+        {{ form_end(form) }}
+    {#{{ dump(form) }}#}
+{% endblock %}

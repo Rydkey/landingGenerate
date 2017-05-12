@@ -1,0 +1,4 @@
+vendor/
+Supprimerait .idea/inspectionProfiles/
+Supprimerait db/
+Supprimerait src/landingBundle/landingBundle/
