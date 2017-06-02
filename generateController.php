@@ -44,6 +44,7 @@ $data['bdd']=[
   'host'=>htmlentities($_POST['host_bdd']),
   'port'=>htmlentities($_POST['port_bdd']),
   'name'=>htmlentities($_POST['name_bdd']),
+  'table'=>htmlentities($_POST['name_table']),
 ];
 if (isset($_POST['register_bdd'])){
   array_walk($data['bdd'], 'trim_value');
@@ -103,7 +104,7 @@ if (!$valid || isset($_SESSION[$form_id]['message_error_bdd'])
 }else{
   generate_prod($data);
   if(($data['bdd']['register'])) {
-    $test=generate_landing_entity($data['field'], $data['bdd']['name']);
+    $test=generate_landing_entity($data['field'], $data['bdd']['table']);
     $test=  generate_database($data['bdd']);
     if ($test){
       exec('php vendor/bin/doctrine orm:schema-tool:create');
