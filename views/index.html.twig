@@ -14,7 +14,7 @@
     {% endfor %}
     {% if form is empty %}
         <h1>Le formulaire n'est pas encore renseigné</h1>
-        <p> rendez vous <a href="">ici</a> pour effectuer la génération </p>
+        <p> rendez vous <a href="./generate.php">ici</a> pour effectuer la génération </p>
     {% else %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
