@@ -8,7 +8,7 @@
  * @param $value
  */
 
-//Supprime les espaces et les caractère indésirables.
+//Supprime les espaces et les caractères indésirables.
 function trim_value(&$value){
   $value=trim($value);
   $value=str_replace(' ','',$value);

@@ -1,29 +1,22 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: rrisser
  * Date: 07/04/17
  * Time: 10:46
  */
-
 namespace landingBundle\Entity;
-
 //sudo php vendor/bin/doctrine orm:generate:entities --filter=Entity src/
 //met à jour l'objet ci-dessous
-
 //sudo php vendor/bin/doctrine orm:schema-tool:create --dump-sql
 //affiche la requête de création de la BDD (enlever --dump-sql pour effectué la création)
-
 //sudo php vendor/bin/doctrine orm:schema-tool:update --force --dump-sql
 //affiche la requête de MaJ de la BDD (enlever --dump-sql pour effectué le changement)
-
 /**
  * Form
- * @Table(name="test_db")
+ * @Table(name="test_table")
  * @Entity()
  */
-
 class Landing
 {
   /**
@@ -32,30 +25,142 @@ class Landing
    * @GeneratedValue(strategy="AUTO")
    */
   protected $id;
-
+  
   /**
   * @Column(type="string", nullable=true)
   *
   */
-  protected $telephonedanslabasededonn;
+  protected $mail_test;
   /**
   * @Column(type="string", nullable=true)
   *
   */
-  protected $bonjour;
+  protected $nom_test;
   /**
   * @Column(type="string", nullable=true)
   *
   */
-  protected $message;
+  protected $prenom_test;
   /**
    * @Column(type="datetime", nullable=true)
    *
    */
   protected $date_enregistrement;
   
+  /**
+   * @Column(type="string", nullable=true)
+   *
+   */
+  protected $profession;
+  
   public function __construct(){
       $this->date_enregistrement = new \DateTime();
   }
   
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set mailTest
+     *
+     * @param string $mailTest
+     *
+     * @return Landing
+     */
+    public function setMailTest($mailTest)
+    {
+        $this->mail_test = $mailTest;
+
+        return $this;
+    }
+
+    /**
+     * Get mailTest
+     *
+     * @return string
+     */
+    public function getMailTest()
+    {
+        return $this->mail_test;
+    }
+
+    /**
+     * Set nomTest
+     *
+     * @param string $nomTest
+     *
+     * @return Landing
+     */
+    public function setNomTest($nomTest)
+    {
+        $this->nom_test = $nomTest;
+
+        return $this;
+    }
+
+    /**
+     * Get nomTest
+     *
+     * @return string
+     */
+    public function getNomTest()
+    {
+        return $this->nom_test;
+    }
+
+    /**
+     * Set prenomTest
+     *
+     * @param string $prenomTest
+     *
+     * @return Landing
+     */
+    public function setPrenomTest($prenomTest)
+    {
+        $this->prenom_test = $prenomTest;
+
+        return $this;
+    }
+
+    /**
+     * Get prenomTest
+     *
+     * @return string
+     */
+    public function getPrenomTest()
+    {
+        return $this->prenom_test;
+    }
+
+    /**
+     * Set dateEnregistrement
+     *
+     * @param \DateTime $dateEnregistrement
+     *
+     * @return Landing
+     */
+    public function setDateEnregistrement($dateEnregistrement)
+    {
+        $this->date_enregistrement = $dateEnregistrement;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnregistrement
+     *
+     * @return \DateTime
+     */
+    public function getDateEnregistrement()
+    {
+        return $this->date_enregistrement;
+    }
 }

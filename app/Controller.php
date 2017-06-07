@@ -42,9 +42,12 @@ function indexController(Symfony\Component\HttpFoundation\Request $request, Sile
         $em->persist($entity);
         $em->flush($entity);
       }
+      
+//      Message si formulaire valide
       $app['session']->getFlashbag()
         ->add('notice', 'Merci, un mail viens d\'ếtre envoyer');
     }else{
+//      Message si erreur
       $app['session']->getFlashBag()
         ->add('notice', 'Le formulaire comporte des erreurs');
     }

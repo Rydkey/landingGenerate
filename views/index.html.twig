@@ -16,9 +16,9 @@
         <h1>Le formulaire n'est pas encore renseigné</h1>
         <p> rendez vous <a href="./generate.php">ici</a> pour effectuer la génération </p>
     {% else %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" name="submit" class="btn btn-lg btn-success"/>
-        {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" name="submit" class="btn btn-lg btn-success"/>
+            {{ form_end(form) }}
     {% endif %}
 {% endblock %}

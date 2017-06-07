@@ -35,6 +35,10 @@ $form_id = 'pf_std';
 unset($_SESSION[$form_id]);
 
 //vérification du champs BDD si il est activer.
+
+/**
+ *  On attribut les champs dans un tableau
+ **/
 $data['bdd']=[
   'register'=>boolval(htmlentities($_POST['register_bdd'])),
   'driver'=>htmlentities($_POST['driver_bdd']),
@@ -46,16 +50,22 @@ $data['bdd']=[
   'name'=>htmlentities($_POST['name_bdd']),
   'table'=>htmlentities($_POST['name_table']),
 ];
+/**
+ *  Si l'option est selectionnée,
+ **/
 if (isset($_POST['register_bdd'])){
-  array_walk($data['bdd'], 'trim_value');
-  $valid=is_BDD($data['bdd']);
+  array_walk($data['bdd'], 'trim_value'); //on supprimes les espaces
+  $valid=is_BDD($data['bdd']); //on vérifie la validité des champs
 }
 
+//on attribut les valeurs dans un tableau
 $data['mail']=[
   'register'=>boolval($_POST['register_mail']),
   'username'=>htmlentities($_POST['username_mail']),
 ];
+//si l'option "mail fournit dans le formulaire" est séléctionnée
 if(isset($_POST['to_form_mail']))$data['mail']['to_form']=boolval(htmlentities($_POST['to_form_mail']));
+// si l'option "Envoi au(x) mail(s) fourni. " est selectionner
 if(isset($_POST['to_provided_mail'])){
   $data['mail']['to_provided_mail']=boolval(htmlentities($_POST['to_provided_mail']));
   if (!empty($_POST['to_mail'])){
@@ -65,6 +75,7 @@ if(isset($_POST['to_provided_mail'])){
       'Si vous souhaitez envoyer le mail à une adresse définit, entrez une adresse valide';
   }
 }
+//si l'option "envoi de mail" est selectionnée
 if (isset($_POST['register_mail'])){
   array_walk($data['mail'], 'trim_value');
   $valid=is_Mail($data['mail']);
@@ -103,9 +114,10 @@ if (!$valid || isset($_SESSION[$form_id]['message_error_bdd'])
   header('Location:' . $dir.'generate.php');
 }else{
   generate_prod($data);
+//  si l'option "enregistrement en base de données" est selectionnée
   if(($data['bdd']['register'])) {
-    $test=generate_landing_entity($data['field'], $data['bdd']['table']);
-    $test=  generate_database($data['bdd']);
+    $test=generate_landing_entity($data['field'], $data['bdd']['table']);//fonction d'écriture de l'entité
+    $test=  generate_database($data['bdd']); //fonction de création de la base de données
     if ($test){
       exec('php vendor/bin/doctrine orm:schema-tool:create');
       shell_exec('php vendor/bin/doctrine orm:generate-entities --filter=Entity src/ 2>&1');

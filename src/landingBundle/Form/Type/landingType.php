@@ -29,8 +29,11 @@ class landingType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-      if(BOOL['mail']){
-        $builder->add(NAME['mail'],EmailType::class,array('attr'=>array('placeholder' => 'email'), 'label'=>'Email : '));
+      if(BOOL['mail']){ // si le booléen est vrai
+        $builder
+          ->add(NAME['mail'],EmailType::class,array(   //ici le champs
+            'attr'=>array('placeholder' => 'email'),         //mail du formulaire
+            'label'=>'Email : '));
       }
       if(BOOL['nom']){
         $builder->add(NAME['nom'],TextType::class,array('attr'=> array('placeholder'=>'Nom'),'label'=> 'Nom :'));
@@ -66,6 +69,7 @@ class landingType extends AbstractType
       if (BOOL['opt_in']){
         $builder->add(NAME['opt_in'],CheckboxType::class,array('required'=>false));
       }
+      
       $builder->getForm()
       ;
     }

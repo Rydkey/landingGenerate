@@ -75,7 +75,13 @@ $form_id = 'pf_std';
                         <div id="div_id_username_bdd" class="form-group required">
                             <label for="id_username_bdd" class="control-label col-md-4  requiredField"> utilisateur<span class="asteriskField">*</span> </label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_bdd']['username']?>" <?php if (isset($_SESSION[$form_id]['field_bdd']['username'])){echo 'value="'.$_SESSION[$form_id]['field_bdd']['username'].'"';}?> class="input-md  textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['username'])){echo "alert-danger";} ?>" id="id_username_bdd" maxlength="30" name="username_bdd" placeholder="utilisateur de la base de données" style="margin-bottom: 10px" type="text" />
+                                <input title="
+                                <?=$_SESSION[$form_id]['message_error_bdd']['username']?>" //affiche sous forme de titre les erreurs
+                                    <?php if (isset($_SESSION[$form_id]['field_bdd']['username']))
+                                        {echo 'value="'.$_SESSION[$form_id]['field_bdd']['username'].'"';}?>  //complète automatiquement l'entrée si celle-ci avait déjà été renseignée
+                                   class="input-md  textinput textInput form-control
+                                    <?php if (isset($_SESSION[$form_id]['message_error_bdd']['username'])){echo "alert-danger";} ?>" //change la couleur du champs pour voir facilement les erreurs
+                                   id="id_username_bdd" maxlength="30" name="username_bdd" placeholder="utilisateur de la base de données" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
                         <div id="div_id_password_bdd" class="form-group required">
@@ -105,10 +111,10 @@ $form_id = 'pf_std';
                         <div id="div_id_name_table" class="form-group required">
                             <label for="id_name_table" class="control-label col-md-4 requiredField">Nom de la table <span title="Si la table n'existe pas, elle sera créée" class="glyphicon glyphicon-info-sign"></span> </label>
                             <div class="controls col-md-8 ">
-                                <input title="<?=$_SESSION[$form_id]['message_error_bdd']['name']?>" <?php if (isset($_SESSION[$form_id]['field_table']['name'])){echo 'value="'.$_SESSION[$form_id]['field_table']['name'].'"';}?> class="input-md textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['name'])){echo "alert-danger";} ?>" id="id_name_table" name="name_table" placeholder="Nom de la base de données" style="margin-bottom: 10px" type="text" />
+                                <input title="<?=$_SESSION[$form_id]['message_error_bdd']['name']?>" <?php if (isset($_SESSION[$form_id]['field_table']['name'])){echo 'value="'.$_SESSION[$form_id]['field_table']['name'].'"';}?> class="input-md textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['name'])){echo "alert-danger";} ?>" id="id_name_table" name="name_table" placeholder="Nom de la table" style="margin-bottom: 10px" type="text" />
                             </div>
                         </div>
-                        <input type="button" id="testBDD" class="btn btn-lg btn-success pull-right" value="tester la connection">
+                        <input type="button" id="testBDD" class="btn btn-lg btn-success pull-right" value="tester la connexion">
 
                     </div>
                 </div>
