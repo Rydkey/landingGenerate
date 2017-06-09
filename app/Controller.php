@@ -45,7 +45,7 @@ function indexController(Symfony\Component\HttpFoundation\Request $request, Sile
       
 //      Message si formulaire valide
       $app['session']->getFlashbag()
-        ->add('notice', 'Merci, un mail viens d\'ếtre envoyer');
+        ->add('notice', 'Merci, un mail vient d\'ếtre envoyé');
     }else{
 //      Message si erreur
       $app['session']->getFlashBag()
