@@ -1,5 +1,6 @@
 # redirige les URL vers index
 
+#Require valid-user
 #AddHandler application/x-httpd-php55 .php
 
 # Do the regex check against the URI here, if match, set the "require_auth" var
@@ -10,4 +11,3 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ /web/app.php [QSA,L]
 </IfModule>
-

@@ -18,7 +18,7 @@ if(!is_numeric($_POST['port']) && empty($msg['port']))$msg['port']=$result='un c
 if (!isset($result)) {
   $result='La connection à été établit.';
   if ($_POST['driver'] == 'mysql') {
-    $connection = mysqli_connect($_POST['host'], $_POST['username'], $_POST['password'], 'mysql', $_POST['port'])
+    $connection = mysqli_connect($_POST['host'], $_POST['username'], $_POST['password'], $_POST['database'], $_POST['port'])
     or $result = mysqli_connect_error();
   }
   else if ($_POST['driver'] == 'pgsql') {

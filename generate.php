@@ -2,7 +2,6 @@
 session_start();
 //session_unset();
 $form_id = 'pf_std';
-
 //echo phpinfo();
 ?>
 <!doctype html>
@@ -298,6 +297,7 @@ $form_id = 'pf_std';
                 port: document.getElementById('id_port_bdd').value,
                 username: document.getElementById('id_username_bdd').value,
                 password: document.getElementById('id_password_bdd').value,
+                database: document.getElementById('id_name_bdd').value,
                 driver: document.getElementById('driver_bdd').value,
                 charset: document.getElementById('charset_bdd').value
             }
