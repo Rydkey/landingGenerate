@@ -81,6 +81,7 @@ if (isset($_POST['register_mail'])){
   $valid=is_Mail($data['mail']);
 }
 
+//attribution des valeurs dans un tableau
 $data['field']=[
   'mail'=>$_POST['field_mail'],
   'nom'=>$_POST['field_nom'],
@@ -95,7 +96,7 @@ $data['field']=[
   'opt_in'=>$_POST['field_optionnel'],
 ];
 array_walk($data['field'], 'trim_value');
-$valid=is_Field($data['field'],$data['mail']['to_form']);
+$valid=is_Field($data['field'],$data['mail']['to_form']);//fonction de vérification
 
 if (!$valid || isset($_SESSION[$form_id]['message_error_bdd'])
   || isset($_SESSION[$form_id]['message_error_mail'])

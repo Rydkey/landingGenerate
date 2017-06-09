@@ -1,18 +1,18 @@
 <h1>Landing Framework</h1>
-<i>Projet réaliser dans le cadre d'un stage chez Maetva : http://www.maetva.com/</i>
+<i>Projet réalisé dans le cadre d'un stage chez Maetva : http://www.maetva.com/</i>
 <h2>Réalisation</h2>
 <ul>
     <li>Silex 2.0</li>
     <li>ORM (https://github.com/dflydev/dflydev-doctrine-orm-service-provider)</li>
 </ul>
 <h2>Fonctions</h2>
-    <p>Landing Generate permet de généré rapidement des landings pages avec : </p>
+    <p>Landing Generate permet de générer rapidement des landings pages avec : </p>
     <ul>
         <li>Enregistrement en base de données</li>
-        <li>Envoie de Mail soit :</li>
+        <li>Envoi de Mail soit :</li>
             <ul>
                 <li>au mail fournit dans le formulaire</li>
-                <li>à un mail près remplit</li>
+                <li>à un mail défini</li>
             </ul>
     </ul>
     <p>avec différents champs (avec vérification) :</p>

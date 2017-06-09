@@ -283,7 +283,7 @@ $form_id = 'pf_std';
             type : 'POST',
             data: {
                 username: document.getElementById('id_username_mail').value,
-                to: prompt('à quel adresse souhaitez vous envoyer le test ?'),
+                to: prompt('à quelle adresse souhaitez-vous envoyer le test ?'),
             }
         }).done(function(msg) {
             alert(msg);
