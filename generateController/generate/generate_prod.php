@@ -61,7 +61,7 @@ $config=[
   ';
   $prod.='
 $headers  = \'From: \'.$mail_config[\'display-mail\'].", \r\n";
-$headers .= \'Content-type: text/html; charset=iso-8859-1\' . "\r\n";
+$headers .= \'Content-type: text/html; charset=utf-8\' . "\r\n";
 $app[\'orm.proxies_dir\'] = __DIR__.\'/../cache/doctrine/proxies\';
 $app[\'orm.default_cache\'] = \'array\';
 $app[\'orm.em.options\'] = array(
