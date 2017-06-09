@@ -34,7 +34,7 @@ function is_BDD(array $posts){
 //  si les champs ne comporte aucun problème on test alors la connexion
   if (empty($_SESSION[$form_id]['message_error_bdd'])){
     if($posts['driver']=='mysql'){ //si l'option "MySQL est choisi
-      $connection=mysqli_connect($posts['host'],$posts['username'],$posts['password'],'mysql',$posts['port'])
+      $connection=mysqli_connect($posts['host'],$posts['username'],$posts['password'],$posts['name'],$posts['port'])
       or $_SESSION[$form_id]['message_error_connection']=mysqli_connect_error(); //si il y à une erreur lors de la connexion
     }else if ($posts['driver']=='pgsql'){
       $connection_string="host=".$posts['host'].' port='.$posts['port'].' user='.$posts['username'].' password='.$posts['password'];
