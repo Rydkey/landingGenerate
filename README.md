@@ -4,6 +4,5 @@
     $ cd landingGenerate/
     $ composer install
     $ composer dump-autoload
-    $ sudo chmod 777 src/
     $ sudo chmod 777 -R src/
     $ sudo chmod 777 app/config/prod.php
