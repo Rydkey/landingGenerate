@@ -7,18 +7,21 @@
         "symfony/asset": "~2.8|3.0.*",
         "symfony/form": "^3.2",
         "symfony/config": "^3.2",
-        "symfony/finder": "^2.2",
+        "symfony/doctrine-bridge": "~2.2",
+        "symfony/dependency-injection": "^3.3",
         "symfony/security": "^3.2",
         "symfony/validator": "^3.2",
         "symfony/filesystem": "^3.2",
         "symfony/process": "^3.2",
         "symfony/yaml": "^3.2",
         "dflydev/doctrine-orm-service-provider": "^2.0",
-        "swiftmailer/swiftmailer": "^5.4"
+        "swiftmailer/swiftmailer": "^5.4",
+        "symfony/finder": "^3.3",
+        "symfony/serializer": "^3.4"
     },
     "autoload": {
         "psr-0": {
-          "landingBundle\\": ["src/"]
+            "landingBundle\\": ["src/"]
         }
     }
 }
