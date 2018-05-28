@@ -1,6 +1,47 @@
 Changelog
 =========
 
+2.3.0 (2018-04-20)
+------------------
+
+ * added support for defining users provider as a service ID
+ * fixed error when HttpKernelRuntime is not available
+ * allow setting custom status code on exception response with Symfony 3.3+
+ * made CSRF extension work with Validator translations domain
+ * fixed Security provider context usage
+ * dropped support for Twig < 2.0
+ * dropped support for PHP < 7.1
+ * dropped support for Symfony 2.x and 3.x
+ * added support for Symfony 4
+ * added support PSR-3 log levels in MonologServiceProvider
+ * exposed AuthenticationUtils in SecurityServiceProvider
+
+2.2.3 (2018-02-25)
+------------------
+
+ * fixed validator integration into the security provider (order of registration of the validator and security providers does not matter anymore)
+ * fixed compatibility issues with Symfony 3.4
+
+2.2.2 (2018-01-12)
+------------------
+
+* [SECURITY] fixed before handlers not executed under mounts
+
+2.2.1 (2017-12-14)
+------------------
+
+* added support for Swiftmailer SSL stream_context_options option
+* fixed usage of namespaces for Twig paths
+
+2.2.0 (2017-07-23)
+------------------
+
+* added json manifest version strategy support
+* fixed EsiFragment constructor
+* fixed RedirectableUrlMatcher compatibility with Symfony
+* fixed compatibility with Pimple 3.2
+* fixed WebTestCase compatibility with PHPUnit 6+
+
 2.1.0 (2017-05-03)
 ------------------
 

@@ -5,40 +5,23 @@ sudo: false
 env:
     global:
         - SYMFONY_DEPRECATIONS_HELPER=weak
+        - SYMFONY_PHPUNIT_DIR=$HOME/.symfony-phpunit
 
 cache:
     directories:
       - $HOME/.composer/cache/files
+      - $HOME/.symfony-phpunit
 
 before_install:
-    - if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then phpenv config-rm xdebug.ini; fi
+    - phpenv config-rm xdebug.ini
+    - composer update --no-suggest
 
-before_script:
-    # symfony/*
-    - sh -c "if [ '$TWIG_VERSION' != '2.0' ]; then sed -i 's/~1.8|~2.0/~1.8/g' composer.json; composer update; fi"
-    - sh -c "if [ '$SYMFONY_DEPS_VERSION' = '3.0' ]; then sed -i 's/~2\.8|^3\.0/3.0.*@dev/g' composer.json; composer update; fi"
-    - sh -c "if [ '$SYMFONY_DEPS_VERSION' = '3.1' ]; then sed -i 's/~2\.8|^3\.0/3.1.*@dev/g' composer.json; composer update; fi"
-    - sh -c "if [ '$SYMFONY_DEPS_VERSION' = '3.2' ]; then sed -i 's/~2\.8|^3\.0/3.2.*@dev/g' composer.json; composer update; fi"
-    - sh -c "if [ '$SYMFONY_DEPS_VERSION' = '' ]; then sed -i 's/~2\.8|^3\.0/2.8.*@dev/g' composer.json; composer update; fi"
-    - composer install
+install:
+    - ./vendor/bin/simple-phpunit install
 
 script: ./vendor/bin/simple-phpunit
 
 matrix:
     include:
-        - php: 5.5
-        - php: 5.6
-          env: TWIG_VERSION=2.0
-        - php: 5.6
-          env: SYMFONY_DEPS_VERSION=3.0
-        - php: 5.6
-          env: SYMFONY_DEPS_VERSION=3.1
-        - php: 5.6
-          env: SYMFONY_DEPS_VERSION=3.2
-        - php: 7.0
         - php: 7.1
-        - php: hhvm
-
-cache:
-    directories:
-        - .phpunit
+        - php: 7.2

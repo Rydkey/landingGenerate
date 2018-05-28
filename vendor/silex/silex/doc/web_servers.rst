@@ -41,15 +41,16 @@ Or if you're using a VirtualHost, you can add the same directive to the VirtualH
 
 .. code-block:: apache
 
-<VirtualHost *:80>
-	# other directives
+    <VirtualHost *:80>
+        # other directives
 
-	<Directory /var/www/domain.com/>
-		# other directives
-		
-		FallbackResource /index.php
-	</Directory>
-</VirtualHost>
+        Alias /app/ /path/to/app/
+        <Directory /path/to/app>
+            # other directives
+
+            FallbackResource /app/index.php
+        </Directory>
+    </VirtualHost>
 
 .. note::
 

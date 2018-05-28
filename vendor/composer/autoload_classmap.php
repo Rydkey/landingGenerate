@@ -15,5 +15,6 @@ return array(
     'Locale' => $vendorDir . '/symfony/intl/Resources/stubs/Locale.php',
     'NumberFormatter' => $vendorDir . '/symfony/intl/Resources/stubs/NumberFormatter.php',
     'ParseError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
+    'SessionUpdateTimestampHandlerInterface' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
     'TypeError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
 );

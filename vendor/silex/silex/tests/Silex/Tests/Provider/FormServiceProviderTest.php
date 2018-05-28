@@ -11,6 +11,7 @@
 
 namespace Silex\Tests\Provider;
 
+use PHPUnit\Framework\TestCase;
 use Silex\Application;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\CsrfServiceProvider;
@@ -22,10 +23,9 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormTypeGuesserChain;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
-class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
+class FormServiceProviderTest extends TestCase
 {
     public function testFormFactoryServiceIsFormFactory()
     {
@@ -53,7 +53,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
             return $extensions;
         });
 
-        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
+        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
             ->add('dummy', 'Silex\Tests\Provider\DummyFormType')
             ->getForm();
 
@@ -76,7 +76,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         });
 
         $form = $app['form.factory']
-            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
+            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
             ->add('dummy', 'dummy')
             ->getForm();
 
@@ -100,7 +100,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         });
 
         $app['form.factory']
-            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
+            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
             ->add('dummy', 'dummy')
             ->getForm();
     }
@@ -117,8 +117,8 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
             return $extensions;
         });
 
-        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
-            ->add('file', 'Symfony\Component\Form\Extension\Core\Type\FileType', array('image_path' => 'webPath'))
+        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
+            ->add('file', 'Symfony\Component\Form\Extension\Core\Type\FileType', ['image_path' => 'webPath'])
             ->getForm();
 
         $this->assertInstanceOf('Symfony\Component\Form\Form', $form);
@@ -140,8 +140,8 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         });
 
         $form = $app['form.factory']
-            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
-            ->add('file', 'Symfony\Component\Form\Extension\Core\Type\FileType', array('image_path' => 'webPath'))
+            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
+            ->add('file', 'Symfony\Component\Form\Extension\Core\Type\FileType', ['image_path' => 'webPath'])
             ->getForm();
 
         $this->assertInstanceOf('Symfony\Component\Form\Form', $form);
@@ -164,7 +164,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         });
 
         $app['form.factory']
-            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
+            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
             ->add('dummy', 'dummy.form.type')
             ->getForm();
     }
@@ -176,7 +176,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app->register(new FormServiceProvider());
 
         $app->extend('form.type.guessers', function ($guessers) {
-            $guessers[] = new FormTypeGuesserChain(array());
+            $guessers[] = new FormTypeGuesserChain([]);
 
             return $guessers;
         });
@@ -191,7 +191,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app->register(new FormServiceProvider());
 
         $app['dummy.form.type.guesser'] = function () {
-            return new FormTypeGuesserChain(array());
+            return new FormTypeGuesserChain([]);
         };
         $app->extend('form.type.guessers', function ($guessers) {
             $guessers[] = 'dummy.form.type.guesser';
@@ -227,25 +227,25 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $app->register(new FormServiceProvider());
         $app->register(new TranslationServiceProvider());
-        $app['translator.domains'] = array(
-            'messages' => array(
-                'de' => array(
+        $app['translator.domains'] = [
+            'messages' => [
+                'de' => [
                     'The CSRF token is invalid. Please try to resubmit the form.' => 'German translation',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
         $app['locale'] = 'de';
 
         $app['csrf.token_manager'] = function () {
             return $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
         };
 
-        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())
+        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])
             ->getForm();
 
-        $form->handleRequest($req = Request::create('/', 'POST', array('form' => array(
+        $form->handleRequest($req = Request::create('/', 'POST', ['form' => [
             '_token' => 'the wrong token',
-        ))));
+        ]]));
 
         $this->assertFalse($form->isValid());
         $r = new \ReflectionMethod($form, 'getErrors');
@@ -259,21 +259,22 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testFormServiceProviderWillNotAddNonexistentTranslationFiles()
     {
-        $app = new Application(array(
+        $app = new Application([
             'locale' => 'nonexistent',
-        ));
+        ]);
 
         $app->register(new FormServiceProvider());
         $app->register(new ValidatorServiceProvider());
-        $app->register(new TranslationServiceProvider(), array(
-            'locale_fallbacks' => array(),
-        ));
+        $app->register(new TranslationServiceProvider(), [
+            'locale_fallbacks' => [],
+        ]);
 
         $app['form.factory'];
         $translator = $app['translator'];
 
         try {
             $translator->trans('test');
+            $this->addToAssertionCount(1);
         } catch (NotFoundResourceException $e) {
             $this->fail('Form factory should not add a translation resource that does not exist');
         }
@@ -287,7 +288,7 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app->register(new CsrfServiceProvider());
         $app['session.test'] = true;
 
-        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())->getForm();
+        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])->getForm();
 
         $this->assertTrue(isset($form->createView()['_token']));
     }
@@ -305,58 +306,25 @@ class FormServiceProviderTest extends \PHPUnit_Framework_TestCase
 
             return $extensions;
         });
-        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', array())->getForm();
+        $form = $app['form.factory']->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType', [])->getForm();
 
         $this->assertFalse($form->getConfig()->getOption('csrf_protection'));
     }
 }
 
-if (!class_exists('Symfony\Component\Form\Deprecated\FormEvents')) {
-    class DummyFormType extends AbstractType
-    {
-    }
-} else {
-    // FormTypeInterface::getName() is needed by the form component 2.8.x
-    class DummyFormType extends AbstractType
-    {
-        /**
-         * @return string The name of this type
-         */
-        public function getName()
-        {
-            return 'dummy';
-        }
-    }
+class DummyFormType extends AbstractType
+{
 }
 
-if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
-    class DummyFormTypeExtension extends AbstractTypeExtension
+class DummyFormTypeExtension extends AbstractTypeExtension
+{
+    public function getExtendedType()
     {
-        public function getExtendedType()
-        {
-            return 'Symfony\Component\Form\Extension\Core\Type\FileType';
-        }
-
-        public function configureOptions(OptionsResolver $resolver)
-        {
-            $resolver->setDefined(array('image_path'));
-        }
+        return 'Symfony\Component\Form\Extension\Core\Type\FileType';
     }
-} else {
-    class DummyFormTypeExtension extends AbstractTypeExtension
-    {
-        public function getExtendedType()
-        {
-            return 'Symfony\Component\Form\Extension\Core\Type\FileType';
-        }
 
-        public function setDefaultOptions(OptionsResolverInterface $resolver)
-        {
-            if (!method_exists($resolver, 'setDefined')) {
-                $resolver->setOptional(array('image_path'));
-            } else {
-                $resolver->setDefined(array('image_path'));
-            }
-        }
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefined(['image_path']);
     }
 }

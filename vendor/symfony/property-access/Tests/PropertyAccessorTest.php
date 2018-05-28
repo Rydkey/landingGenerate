@@ -578,4 +578,58 @@ class PropertyAccessorTest extends TestCase
 
         $this->propertyAccessor->setValue($object, 'countable', 'This is a string, \Countable expected.');
     }
+
+    public function testAnonymousClassRead()
+    {
+        $value = 'bar';
+
+        $obj = $this->generateAnonymousClass($value);
+
+        $propertyAccessor = new PropertyAccessor(false, false, new ArrayAdapter());
+
+        $this->assertEquals($value, $propertyAccessor->getValue($obj, 'foo'));
+    }
+
+    public function testAnonymousClassWrite()
+    {
+        $value = 'bar';
+
+        $obj = $this->generateAnonymousClass('');
+
+        $propertyAccessor = new PropertyAccessor(false, false, new ArrayAdapter());
+        $propertyAccessor->setValue($obj, 'foo', $value);
+
+        $this->assertEquals($value, $propertyAccessor->getValue($obj, 'foo'));
+    }
+
+    private function generateAnonymousClass($value)
+    {
+        $obj = eval('return new class($value)
+        {
+            private $foo;
+
+            public function __construct($foo)
+            {
+                $this->foo = $foo;
+            }
+
+            /**
+             * @return mixed
+             */
+            public function getFoo()
+            {
+                return $this->foo;
+            }
+
+            /**
+             * @param mixed $foo
+             */
+            public function setFoo($foo)
+            {
+                $this->foo = $foo;
+            }
+        };');
+
+        return $obj;
+    }
 }
