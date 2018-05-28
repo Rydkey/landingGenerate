@@ -157,7 +157,7 @@ You can register form types by extending ``form.types``::
         $types[] = 'your.type.service';
 
         return $types;
-    }));
+    });
 
 You can register form extensions by extending ``form.extensions``::
 
@@ -213,4 +213,4 @@ Traits
     $app->namedForm($name, $data, $options, $type);
 
 For more information, consult the `Symfony Forms documentation
-<http://symfony.com/doc/2.8/book/forms.html>`_.
+<http://symfony.com/doc/current/forms.html>`_.

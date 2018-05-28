@@ -11,11 +11,12 @@
 
 namespace Silex\Tests\Provider;
 
+use PHPUnit\Framework\TestCase;
 use Silex\Application;
 use Silex\Provider\SwiftmailerServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 
-class SwiftmailerServiceProviderTest extends \PHPUnit_Framework_TestCase
+class SwiftmailerServiceProviderTest extends TestCase
 {
     public function testSwiftMailerServiceIsSwiftMailer()
     {
@@ -123,7 +124,7 @@ class SwiftmailerServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app->register(new SwiftmailerServiceProvider());
 
         $app['swiftmailer.plugins'] = function ($app) use ($plugin) {
-            return array($plugin);
+            return [$plugin];
         };
 
         $dispatcher = $app['swiftmailer.transport.eventdispatcher'];

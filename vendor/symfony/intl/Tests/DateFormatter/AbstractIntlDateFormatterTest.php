@@ -14,6 +14,8 @@ namespace Symfony\Component\Intl\Tests\DateFormatter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Intl\DateFormatter\IntlDateFormatter;
 use Symfony\Component\Intl\Globals\IntlGlobals;
+use Symfony\Component\Intl\Intl;
+use Symfony\Component\Intl\Util\IcuVersion;
 
 /**
  * Test case for IntlDateFormatter implementations.
@@ -226,26 +228,25 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
             array('s', 3601, '1'),
             array('s', 3630, '30'),
             array('s', 43200, '0'), // 12 hours
-
-            // general
-            array("yyyy.MM.dd 'at' HH:mm:ss zzz", 0, '1970.01.01 at 00:00:00 UTC'),
-            array('K:mm a, z', 0, '0:00 AM, UTC'),
-
-            // general, DateTime
-            array('y-M-d', $dateTime, '1970-1-1'),
-            array("EEE, MMM d, ''yy", $dateTime, "Thu, Jan 1, '70"),
-            array('h:mm a', $dateTime, '12:00 AM'),
-            array('yyyyy.MMMM.dd hh:mm aaa', $dateTime, '01970.January.01 12:00 AM'),
-            array("yyyy.MM.dd 'at' HH:mm:ss zzz", $dateTime, '1970.01.01 at 00:00:00 UTC'),
-            array('K:mm a, z', $dateTime, '0:00 AM, UTC'),
         );
+
+        /* general, DateTime */
+        $formatData[] = array('y-M-d', $dateTime, '1970-1-1');
+        $formatData[] = array("EEE, MMM d, ''yy", $dateTime, "Thu, Jan 1, '70");
+        $formatData[] = array('h:mm a', $dateTime, '12:00 AM');
+        $formatData[] = array('yyyyy.MMMM.dd hh:mm aaa', $dateTime, '01970.January.01 12:00 AM');
+
+        if (IcuVersion::compare(Intl::getIcuVersion(), '59.1', '>=', 1)) {
+            // Before ICU 59.1 GMT was used instead of UTC
+            $formatData[] = array("yyyy.MM.dd 'at' HH:mm:ss zzz", 0, '1970.01.01 at 00:00:00 UTC');
+            $formatData[] = array('K:mm a, z', 0, '0:00 AM, UTC');
+            $formatData[] = array("yyyy.MM.dd 'at' HH:mm:ss zzz", $dateTime, '1970.01.01 at 00:00:00 UTC');
+            $formatData[] = array('K:mm a, z', $dateTime, '0:00 AM, UTC');
+        }
 
         return $formatData;
     }
 
-    /**
-     * @requires PHP 5.5.10
-     */
     public function testFormatUtcAndGmtAreSplit()
     {
         $pattern = "yyyy.MM.dd 'at' HH:mm:ss zzz";
@@ -318,7 +319,6 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
 
     /**
      * @dataProvider formatTimezoneProvider
-     * @requires PHP 5.5.10
      */
     public function testFormatTimezone($pattern, $timezone, $expected)
     {
@@ -330,7 +330,7 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
 
     public function formatTimezoneProvider()
     {
-        $cases = array(
+        return array(
             array('z', 'GMT', 'GMT'),
             array('zz', 'GMT', 'GMT'),
             array('zzz', 'GMT', 'GMT'),
@@ -369,20 +369,13 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
             array('zzzzz', 'Etc/Zulu', 'Coordinated Universal Time'),
             array('zzzzz', 'Etc/UCT', 'Coordinated Universal Time'),
             array('zzzzz', 'Etc/Greenwich', 'Greenwich Mean Time'),
+
+            array('z', 'GMT+03:00', 'GMT+3'),
+            array('zz', 'GMT+03:00', 'GMT+3'),
+            array('zzz', 'GMT+03:00', 'GMT+3'),
+            array('zzzz', 'GMT+03:00', 'GMT+03:00'),
+            array('zzzzz', 'GMT+03:00', 'GMT+03:00'),
         );
-
-        if (!defined('HHVM_VERSION')) {
-            // these timezones are not considered valid in HHVM
-            $cases = array_merge($cases, array(
-                array('z', 'GMT+03:00', 'GMT+3'),
-                array('zz', 'GMT+03:00', 'GMT+3'),
-                array('zzz', 'GMT+03:00', 'GMT+3'),
-                array('zzzz', 'GMT+03:00', 'GMT+03:00'),
-                array('zzzzz', 'GMT+03:00', 'GMT+03:00'),
-            ));
-        }
-
-        return $cases;
     }
 
     public function testFormatWithGmtTimezone()
@@ -423,9 +416,6 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP 5.5.10
-     */
     public function testFormatWithDateTimeZoneGmt()
     {
         $formatter = $this->getDateFormatter('en', IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT, new \DateTimeZone('GMT'), IntlDateFormatter::GREGORIAN, 'zzz');
@@ -435,10 +425,6 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
 
     public function testFormatWithDateTimeZoneGmtOffset()
     {
-        if (defined('HHVM_VERSION_ID') || \PHP_VERSION_ID <= 50509) {
-            $this->markTestSkipped('DateTimeZone GMT offsets are supported since 5.5.10. See https://github.com/facebook/hhvm/issues/5875 for HHVM.');
-        }
-
         $formatter = $this->getDateFormatter('en', IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT, new \DateTimeZone('GMT+03:00'), IntlDateFormatter::GREGORIAN, 'zzzz');
 
         $this->assertEquals('GMT+03:00', $formatter->format(0));
@@ -866,7 +852,9 @@ abstract class AbstractIntlDateFormatterTest extends TestCase
         $position = null;
         $formatter = $this->getDefaultDateFormatter('y');
         $this->assertSame(0, $formatter->parse('1970', $position));
-        $this->assertNull($position);
+        // Since $position is not supported by the Symfony implementation, the following won't work.
+        // The intl implementation works this way since 60.2.
+        // $this->assertSame(4, $position);
     }
 
     public function testSetPattern()

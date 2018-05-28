@@ -14,7 +14,7 @@ namespace Silex\Provider;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\MessageSelector;
+use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -77,15 +77,15 @@ class TranslationServiceProvider implements ServiceProviderInterface, EventListe
         }
 
         $app['translator.message_selector'] = function () {
-            return new MessageSelector();
+            return new MessageFormatter();
         };
 
-        $app['translator.resources'] = $app->protect(function ($app) {
-            return array();
-        });
+        $app['translator.resources'] = function ($app) {
+            return [];
+        };
 
-        $app['translator.domains'] = array();
-        $app['locale_fallbacks'] = array('en');
+        $app['translator.domains'] = [];
+        $app['locale_fallbacks'] = ['en'];
         $app['translator.cache_dir'] = null;
     }
 
