@@ -9,5 +9,5 @@
     Options -MultiViews
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ /web/app.php [QSA,L]
+    RewriteRule ^ web/app.php [QSA,L]
 </IfModule>

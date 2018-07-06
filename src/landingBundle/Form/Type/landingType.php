@@ -30,27 +30,38 @@ class landingType extends AbstractType
   {
   }
   
+  /**
+   *
+   * Géré automatiquement, dans l'idéal ne pas toucher.
+   * si vous souhaitez ajouter un champs : https://symfony.com/doc/current/forms.html
+   * (voir le bas de page pour tous les types de champs possibles.
+   *
+   * @param FormBuilderInterface $builder
+   * @param array $options
+   */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->add('civilite', ChoiceType::class,
-      [
-        'choices'     => [
-          'Madame'   => 'Madame',
-          'Monsieur' => 'Monsieur',
-        ],
-        'choice_attr' => function ($val, $key, $index) {
-          if ($key == 'Madame') {
-            return ['checked' => 'checked',];
-          } else {
-            return [];
-          }
-        },
-        'label'       => "Civilité* ",
-        'placeholder' => FALSE,
-        'expanded'    => TRUE,
-        'multiple'    => FALSE,
-        'required'    => TRUE,
-      ]);
+    if (BOOL["civilite"]){
+      $builder->add(NAME["civilite"], ChoiceType::class,
+        [
+          'choices'     => [
+            'Madame'   => 'Madame',
+            'Monsieur' => 'Monsieur',
+          ],
+          'choice_attr' => function ($val, $key, $index) {
+            if ($key == 'Madame') {
+              return ['checked' => 'checked',];
+            } else {
+              return [];
+            }
+          },
+          'label'       => "Civilité* ",
+          'placeholder' => FALSE,
+          'expanded'    => TRUE,
+          'multiple'    => FALSE,
+          'required'    => TRUE,
+        ]);
+    }
     
     if (BOOL['mail']) { // si le booléen est vrai
       $builder

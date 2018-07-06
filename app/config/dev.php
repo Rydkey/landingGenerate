@@ -9,7 +9,7 @@
 // inclus la définition de la base de données.
 require __DIR__.'/prod.php';
 
-//débug de silex, ne pas toucher pour le dev
+//débug de silex, ne pas toucher pour le dev. Passez en false pour la prod.
 $app['debug'] = true;
 
 //permet de récupéré l'URL de base de l'appliquation, ne pas toucher

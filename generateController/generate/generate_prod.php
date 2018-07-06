@@ -6,60 +6,81 @@
  * Time: 11:16
  */
 
-$prod='';
+$prod = '';
 
-function add_bdd($bdd){
+/**
+ * Ajoute les lignes concernant la base de données.
+ * @param $bdd
+ */
+function add_bdd($bdd)
+{
   global $prod;
-  $prod.= '
+  $prod .= '
 $db_config=[
-  \'driver\'=> \'pdo_'.$bdd['driver'].'\',
-  \'charset\'=> \''.$bdd['charset'].'\',
-  \'host\'=> \''.$bdd['host'].'\',
-  \'port\'=> \''.$bdd['port'].'\',
-  \'dbname\'=> \''.$bdd['name'].'\',
-  \'user\'=> \''.$bdd['username'].'\',
-  \'password\'=> \''.$bdd['password'].'\',
+  \'driver\'=> \'pdo_' . $bdd['driver'] . '\',
+  \'charset\'=> \'' . $bdd['charset'] . '\',
+  \'host\'=> \'' . $bdd['host'] . '\',
+  \'port\'=> \'' . $bdd['port'] . '\',
+  \'dbname\'=> \'' . $bdd['name'] . '\',
+  \'user\'=> \'' . $bdd['username'] . '\',
+  \'password\'=> \'' . $bdd['password'] . '\',
 ];
   ';
 }
 
-function add_mail($mail){
+/**
+ * Ajoute les lignes convernant l'envoie de mail.
+ * @param $mail
+ */
+function add_mail($mail)
+{
   global $prod;
-  $prod.='
+  $prod .= '
 $mail_bool=[
-  \'form\'=>\''.$mail['to_form'].'\',
-  \'provided\'=>\''.$mail['to_provided_mail'].'\',
+  \'form\'=>\'' . $mail['to_form'] . '\',
+  \'provided\'=>\'' . $mail['to_provided_mail'] . '\',
 ];
   ';
-  $prod.= '$mail_config[\'display-mail\'] = \''.$mail['username'].'\';';
-  if(($mail['to_provided_mail']))$prod.='
-  $mail_to[]= \''.$mail['mail_provided'].'\';
+  $prod .= '$mail_config[\'display-mail\'] = \'' . $mail['username'] . '\';';
+  if (($mail['to_provided_mail'])) $prod .= '
+  $mail_to[]= \'' . $mail['mail_provided'] . '\';
   ';
 }
 
-function add_field($field){
+/**
+ * ajoute les booléen indiquant si le champs est présent ou non.
+ * @param $field
+ */
+function add_field($field)
+{
   global $prod;
-  foreach($field as $key => $v){
-    $prod.='
-$f_bool[\''.$key.'\']=\''.boolval($v).'\';
+  foreach ($field as $key => $v) {
+    $prod .= '
+$f_bool[\'' . $key . '\']=\'' . boolval($v) . '\';
     ';
-    if (!empty($v)){
-      $prod.='
-$f_name[\''.$key.'\']=\''.$v.'\';
+    if (!empty($v)) {
+      $prod .= '
+$f_name[\'' . $key . '\']=\'' . $v . '\';
     ';
     }
   }
 }
 
-function add_required($bdd,$mail){
+/**
+ * Ajoute les champs nécessaire au fonctionnement du formulaire
+ * @param $bdd
+ * @param $mail
+ */
+function add_required($bdd, $mail)
+{
   global $prod;
-  $prod.='
+  $prod .= '
 $config=[
-  \'db_register\'=>\''.$bdd.'\',
-  \'mail_send\'=>\''.$mail.'\',
+  \'db_register\'=>\'' . $bdd . '\',
+  \'mail_send\'=>\'' . $mail . '\',
 ];
   ';
-  $prod.='
+  $prod .= '
 $headers  = \'From: \'.$mail_config[\'display-mail\'].", \r\n";
 $headers .= \'Content-type: text/html; charset=utf-8\' . "\r\n";
 $app[\'orm.proxies_dir\'] = __DIR__.\'/../cache/doctrine/proxies\';
@@ -77,18 +98,23 @@ $app[\'orm.em.options\'] = array(
 }
 
 /**
+ * Fonction appelant toutes les autres fonctions générant les lignes
+ * en fonction des informations entrées
+ *
  * @param array $data
  *
  * @return bool
  */
-function generate_prod(array $data){
+function generate_prod(array $data)
+{
   global $prod;
-  if($data['bdd']['register']) add_bdd($data['bdd']);
-  if($data['mail']['register']) add_mail($data['mail']);
+  if ($data['bdd']['register']) add_bdd($data['bdd']);
+  if ($data['mail']['register']) add_mail($data['mail']);
   add_field($data['field']);
-  add_required($data['bdd']['register'],$data['mail']['register']);
-  $file= __DIR__."/../../app/config/prod.php";
-  $content=file_get_contents($file);
-  $content = str_replace('//ecrire_ici',$prod,$content);
-  file_put_contents($file,$content);
+  add_required($data['bdd']['register'], $data['mail']['register']);
+  $file = __DIR__ . "/../../app/config/prod.php";
+  $content = file_get_contents($file);
+  $content = str_replace('//ecrire_ici', $prod, $content);
+  var_dump($prod);
+  file_put_contents($file, $content);
 }

@@ -9,8 +9,9 @@
  */
 
 //Supprime les espaces et les caractères indésirables.
-function trim_value(&$value){
-  $value=trim($value);
-  $value=str_replace(' ','',$value);
+function trim_value(&$value)
+{
+  $value = trim($value);
+  $value = str_replace(' ', '', $value);
   $value = preg_replace('/\s+/', '', $value);
 }
