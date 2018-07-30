@@ -98,6 +98,7 @@ $data['field'] = [
 ];
 array_walk($data['field'], 'trim_value');
 $valid = is_Field($data['field'], $data['mail']['to_form']);//fonction de vérification
+$valid = is_Field($data['field'], $data['mail']['to_form']);//fonction de vérification
 
 if (!$valid || isset($_SESSION[$form_id]['message_error_bdd'])
   || isset($_SESSION[$form_id]['message_error_mail'])

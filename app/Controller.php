@@ -42,7 +42,7 @@ function indexController(Symfony\Component\HttpFoundation\Request $request, Sile
         }
         if (MAIL_BOOL['provided']) {
           foreach (MAIL_TO as $mail) {
-            mail($mail, 'test', $app['twig']->render('Mail/mail.html.twig', ['items' => $form->getData()]), HEADER);
+            mail($mail, 'test', $app['twig']->render('1/Mail/mail.html.twig', ['items' => $form->getData()]), HEADER);
           }
         }
       }
@@ -60,5 +60,5 @@ function indexController(Symfony\Component\HttpFoundation\Request $request, Sile
         ->add('notice', 'Le formulaire comporte des erreurs');
     }
   }
-  return $app['twig']->render('index.html.twig', ['form' => $form->createView()]);
+  return $app['twig']->render('1/index.html.twig', ['form' => $form->createView()]);
 }
