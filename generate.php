@@ -124,8 +124,9 @@ $form_id = 'pf_std';
                   <?php if (isset($_SESSION[$form_id]['message_error_bdd']['username'])) {
                     echo "alert-danger";
                   } ?>" //change la couleur du champs pour voir facilement les erreurs
-                  id="id_username_bdd" maxlength="30" name="username_bdd" placeholder="utilisateur
-                  de la base de données" style="margin-bottom: 10px" type="text" />
+                  id="id_username_bdd" maxlength="30" name="username_bdd"
+                  placeholder="Utilisateur de la base de données" style="margin-bottom: 10px"
+                  type="text" />
                 </div>
               </div>
               <div id="div_id_password_bdd" class="form-group required">
@@ -138,7 +139,7 @@ $form_id = 'pf_std';
                          class="input-md textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['password'])) {
                            echo "alert-danger";
                          } ?>" id="id_password_bdd" name="password_bdd"
-                         placeholder="mdp base de données" style="margin-bottom: 10px"
+                         placeholder="Mot de passe de la base de données" style="margin-bottom: 10px"
                          type="password"/>
                 </div>
               </div>
@@ -152,7 +153,7 @@ $form_id = 'pf_std';
                          class="input-md textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['host'])) {
                            echo "alert-danger";
                          } ?>" id="id_host_bdd" name="host_bdd"
-                         placeholder="host de la base de données" style="margin-bottom: 10px"
+                         placeholder="Hébergeur de la base de données" style="margin-bottom: 10px"
                          type="text"/>
                 </div>
               </div>
@@ -168,13 +169,13 @@ $form_id = 'pf_std';
                          class="input-md textinput textInput form-control <?php if (isset($_SESSION[$form_id]['message_error_bdd']['port'])) {
                            echo "alert-danger";
                          } ?>" id="id_port_bdd" name="port_bdd"
-                         placeholder="port de la base de données" style="margin-bottom: 10px"
+                         placeholder="Port de la base de données" style="margin-bottom: 10px"
                          type="text"/>
                 </div>
               </div>
               <div id="div_id_name_bdd" class="form-group required">
                 <label for="id_name_bdd" class="control-label col-md-4 requiredField">Nom de la base
-                  <span title="Si la base n'existe pas, elle sera créée"
+                  <span title="Veillez à renseigner une base existante."
                         class="glyphicon glyphicon-info-sign"></span> </label>
                 <div class="controls col-md-8 ">
                   <input title="<?= $_SESSION[$form_id]['message_error_bdd']['name'] ?>" <?php if (isset($_SESSION[$form_id]['field_bdd']['name'])) {
