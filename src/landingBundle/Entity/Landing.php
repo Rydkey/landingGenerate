@@ -11,20 +11,24 @@ namespace landingBundle\Entity;
 /*
 sudo php vendor/bin/doctrine orm:generate:entities --filter=Entity src/
 met à jour l'objet ci-dessous
-
 sudo php vendor/bin/doctrine orm:schema-tool:create --dump-sql
 affiche la requête de création de la BDD (enlever --dump-sql pour effectué la création)
-
 sudo php vendor/bin/doctrine orm:schema-tool:update --force --dump-sql
 affiche la requête de MaJ de la BDD (enlever --dump-sql pour effectué le changement)
 */
+
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * Form
  * Généré automatiquement, dans l'idéal, ne pas toucher.
  * Si vous souhaitez ajouter un champ : https://symfony.com/doc/current/doctrine.html
  * puis exectuer la commande de mise à jour de la base.
- * @Table(name="/table\")
+ * @Table(name="test")
  * @Entity()
  */
 class Landing

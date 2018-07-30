@@ -41,7 +41,7 @@ class landingType extends AbstractType
    */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    if (BOOL["civilite"]){
+    if (BOOL["civilite"]) {
       $builder->add(NAME["civilite"], ChoiceType::class,
         [
           'choices'     => [
@@ -65,42 +65,42 @@ class landingType extends AbstractType
     
     if (BOOL['mail']) { // si le booléen est vrai
       $builder
-        ->add(NAME['mail'], EmailType::class, array(   //ici le champs
-                                                       'attr'  => array(
-                                                         'placeholder' => FALSE),
-                                                       //mail du formulaire
-                                                       'label' => 'Email*'));
+        ->add(NAME['mail'], EmailType::class, [   //ici le champs
+                                                  'attr'  => [
+                                                    'placeholder' => FALSE],
+                                                  //mail du formulaire
+                                                  'label' => 'Email*']);
     }
     if (BOOL['nom']) {
-      $builder->add(NAME['nom'], TextType::class, array('attr'  => array('placeholder' => FALSE),
-                                                        'label' => 'Nom*'));
+      $builder->add(NAME['nom'], TextType::class, ['attr'  => ['placeholder' => FALSE],
+                                                   'label' => 'Nom*']);
     }
     if (BOOL['prenom']) {
-      $builder->add(NAME['prenom'], TextType::class, array('attr'  => array('placeholder' => 'Prénom'),
-                                                           'label' => 'Prénom :'));
+      $builder->add(NAME['prenom'], TextType::class, ['attr'  => ['placeholder' => 'Prénom'],
+                                                      'label' => 'Prénom :']);
     }
     if (BOOL['numeroAdresse']) {
-      $builder->add(NAME['numeroAdresse'], NumberType::class, array('attr'  => array('placeholder' => 'Numéro de rue'),
-                                                                    'label' => 'Numéro de voie :'));
+      $builder->add(NAME['numeroAdresse'], NumberType::class, ['attr'  => ['placeholder' => 'Numéro de rue'],
+                                                               'label' => 'Numéro de voie :']);
     }
     if (BOOL['voieAdresse']) {
-      $builder->add(NAME['voieAdresse'], TextType::class, array('attr'  => array('placeholder' => 'Nom de la voie'),
-                                                                'label' => 'Nom de la voie :'));
+      $builder->add(NAME['voieAdresse'], TextType::class, ['attr'  => ['placeholder' => 'Nom de la voie'],
+                                                           'label' => 'Nom de la voie :']);
     }
     if (BOOL['codePostal']) {
-      $builder->add(NAME['codePostal'], IntegerType::class, array('attr'        => array('placeholder'                     => FALSE,
-                                                                                         'pattern'                         => "[0-9]*",
-                                                                                         "step"                            => "any",
-                                                                                         "max"                             => "99999",
-                                                                                         "data-numeric-input"              => "",
-                                                                                         "data-numeric-input-nav-disabled" => "",
-                                                                                         "inputmode"                       => "numeric"),
-                                                                  'label'       => 'Code Postal*',
-                                                                  'constraints' => [new Assert\Length(['min' => 5])]));
+      $builder->add(NAME['codePostal'], IntegerType::class, ['attr'        => ['placeholder'                     => FALSE,
+                                                                               'pattern'                         => "[0-9]*",
+                                                                               "step"                            => "any",
+                                                                               "max"                             => "99999",
+                                                                               "data-numeric-input"              => "",
+                                                                               "data-numeric-input-nav-disabled" => "",
+                                                                               "inputmode"                       => "numeric"],
+                                                             'label'       => 'Code Postal*',
+                                                             'constraints' => [new Assert\Length(['min' => 5])]]);
     }
     if (BOOL['ville']) {
-      $builder->add(NAME['ville'], TextType::class, array('attr'  => array('placeholder' => 'Ville'),
-                                                          'label' => 'Ville :'));
+      $builder->add(NAME['ville'], TextType::class, ['attr'  => ['placeholder' => 'Ville'],
+                                                     'label' => 'Ville :']);
     }
     if (BOOL['telephone']) {
       $builder->add(NAME['telephone'], TelType::class,
@@ -113,7 +113,7 @@ class landingType extends AbstractType
           'constraints' => [
             new Assert\Length(['min' => 10]),
             new Assert\Regex('/^(01|02|03|04|05|06|07|09)/'),
-            new Assert\Type('numeric')
+            new Assert\Type('numeric'),
           ],
         ]
       );
@@ -121,17 +121,17 @@ class landingType extends AbstractType
     
     
     if (BOOL['entreprise']) {
-      $builder->add(NAME['entreprise'], TextType::class, array('attr'  => array('placeholder' => 'Entreprise'),
-                                                               'label' => 'Entreprise :'));
+      $builder->add(NAME['entreprise'], TextType::class, ['attr'  => ['placeholder' => 'Entreprise'],
+                                                          'label' => 'Entreprise :']);
     }
     if (BOOL['message']) {
-      $builder->add(NAME['message'], TextareaType::class, array('attr'     => array('placeholder' => 'Message'),
-                                                                'label'    => 'Message :',
-                                                                'required' => FALSE));
+      $builder->add(NAME['message'], TextareaType::class, ['attr'     => ['placeholder' => 'Message'],
+                                                           'label'    => 'Message :',
+                                                           'required' => FALSE]);
     }
     if (BOOL['opt_in']) {
-      $builder->add(NAME['opt_in'], CheckboxType::class, array('required' => FALSE,
-                                                               "label"    => "J’accepte de recevoir les Offres de MurGuard par voie électronique."));
+      $builder->add(NAME['opt_in'], CheckboxType::class, ['required' => FALSE,
+                                                          "label"    => "J’accepte de recevoir les Offres de MurGuard par voie électronique."]);
     }
     
     $builder->getForm();
@@ -139,9 +139,9 @@ class landingType extends AbstractType
   
   public function setDefaultOptions(OptionsResolver $resolver)
   {
-    $resolver->setDefaults(array(
-      'data_class' => 'Entity\landing'
-    ));
+    $resolver->setDefaults([
+      'data_class' => 'Entity\landing',
+    ]);
   }
   
   public function getName()

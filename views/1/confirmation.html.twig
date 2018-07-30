@@ -1,0 +1,32 @@
+{% extends "1/layout.html.twig" %}
+{#mettre le contenue de la page dans les balises block#}
+
+{#notifications#}
+
+
+{% block content %}
+
+
+  <div class="page">
+    <div class="confirmation">
+      <div class="container__mid">
+        <div class="confirmation_inner">
+          <div class="confirmation_header">
+            <div class="confirmation_check"></div>
+            <h1>MERCI !</h1>
+            <p>Votre demande a bien été prise en compte
+              <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if app.session.get('datas') is not empty %}
+    {#mettre tracker ici, ne pas supprimer la ligne suivante.#}
+    {#{{ app.session.set("datas","") }}#}
+  {% endif %}
+
+
+
+{% endblock %}
