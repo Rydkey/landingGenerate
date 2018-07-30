@@ -66,8 +66,8 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 // rajoute la méthode asset dans twig
 $app->register(new Silex\Provider\AssetServiceProvider(), [
   'assets.named_packages' => [
-    'css' => ['base_path' => BASE_URL . 'assets/css'],
-    'img' => ['base_path' => BASE_URL . 'assets/img'],
-    'lib' => ['base_path' => BASE_URL . 'assets/lib'],
-    'js'  => ['base_path' => BASE_URL . 'assets/js'],
+    'css' => ['base_path' => BASE_URL . '/css'],
+    'img' => ['base_path' => BASE_URL . '/img'],
+    'lib' => ['base_path' => BASE_URL . '/lib'],
+    'js'  => ['base_path' => BASE_URL . '/js'],
   ]]);
