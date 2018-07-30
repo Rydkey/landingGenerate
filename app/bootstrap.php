@@ -25,11 +25,11 @@ ExceptionHandler::register();
 
 // Register service providers.
 $app->register(new FormServiceProvider());
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
+$app->register(new Silex\Provider\TwigServiceProvider(), [
   'twig.path' => __DIR__ . '/../views',
-));
+]);
 $app->register(new Silex\Provider\DoctrineServiceProvider());
-$app['db.options'] = array(
+$app['db.options'] = [
   'driver'   => BDD['driver'], //définit le driver pour la BDD
   'charset'  => BDD['charset'], //définit le charset pour la BDD
   'host'     => BDD['host'],  //serveur pour la BDD
@@ -37,35 +37,37 @@ $app['db.options'] = array(
   'dbname'   => BDD['dbname'],  //nom de la BDD
   'user'     => BDD['user'], //Utilisateur
   'password' => BDD['password'], //mot de passe
-);
-$app->register(new DoctrineOrmServiceProvider, array(
-  'orm.em.options' => array(
-    'mappings' => array(
+];
+$app->register(new DoctrineOrmServiceProvider, [
+  'orm.em.options' => [
+    'mappings' => [
       // Using actual filesystem paths
-      array(
+      [
         'type'      => 'annotation',
         'namespace' => 'landingBundle\Entity',
         'path'      => __DIR__ . '/../src/Entity',
-      )
+      ],
     
-    ),
-  ),
-));
+    ],
+  ],
+]);
 
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
-  'translator.domains' => array(),
-));
+$app->register(new Silex\Provider\TranslationServiceProvider(), [
+  'translator.domains' => [],
+]);
 $app->register(new Silex\Provider\SessionServiceProvider());
 
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
-  'translator.domains' => array(),
-));
+$app->register(new Silex\Provider\TranslationServiceProvider(), [
+  'translator.domains' => [],
+]);
 $app->register(new Silex\Provider\LocaleServiceProvider());
 $app->register(new Silex\Provider\TranslationServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 // rajoute la méthode asset dans twig
-$app->register(new Silex\Provider\AssetServiceProvider(), array(
-  'assets.named_packages' => array(
-    'css' => array('base_path' => BASE_URL . '/'),
-    'img' => array('base_path' => BASE_URL . '/'),
-  )));
+$app->register(new Silex\Provider\AssetServiceProvider(), [
+  'assets.named_packages' => [
+    'css' => ['base_path' => BASE_URL . 'assets/css'],
+    'img' => ['base_path' => BASE_URL . 'assets/img'],
+    'lib' => ['base_path' => BASE_URL . 'assets/lib'],
+    'js'  => ['base_path' => BASE_URL . 'assets/js'],
+  ]]);
