@@ -37,7 +37,7 @@ class landingType extends AbstractType
    * (voir le bas de page pour tous les types de champs possibles.
    *
    * @param FormBuilderInterface $builder
-   * @param array $options
+   * @param array                $options
    */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {

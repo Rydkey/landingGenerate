@@ -36,8 +36,10 @@ function homeController($app)
 
 function landingController(Symfony\Component\HttpFoundation\Request $request, Silex\Application $app, $landing)
 {
-  $url_base = _geturlBase($landing);
+  $base_url = _getBaseUrl($landing);
+  // paramêtres POST de la fonction, il n'y en a pas de base.
   $parameters = $request->query->all();
+  //si enregistrement en base
   if (CONFIG['db_register']) {
     $em = $app['orm.em'];
     $entity = _getEntity($landing);
@@ -47,33 +49,40 @@ function landingController(Symfony\Component\HttpFoundation\Request $request, Si
   }
   $form = $formBuilder->getForm();
   $form->handleRequest($request);
-  $retour = $app['twig']->render($url_base . '/landing.html.twig', ['form'       => $form->createView(),
+  //variable correspondant à la page de retour (pour l'instant la page d'atterissage).
+  $retour = $app['twig']->render($base_url . '/landing.html.twig', ['form'       => $form->createView(),
                                                                     'parameters' => $parameters]);
   if ($form->isSubmitted()) {
     if ($form->isValid() && time()) {
+      //Si il y à des envoies de mail
       if (CONFIG['mail_send']) {
+        //Mail fournit dans le form
         if (MAIL_BOOL['form']) {
           mail($form[NAME['mail']]->getData(), 'test', $app['twig']
-            ->render($url_base . '/Mail/mail.html.twig', ['items' => $form->getData()]), HEADER);
+            ->render($base_url . '/Mail/mail.html.twig', ['items' => $form->getData()]), HEADER);
         }
+        //mail fournit par le developpeur (voir MAIL_TO dans app/config/prod.php)
         if (MAIL_BOOL['provided']) {
           foreach (MAIL_TO as $mail) {
-            mail($mail, 'test', $app['twig']->render($url_base . 'Mail/mail.html.twig',
+            mail($mail, 'test', $app['twig']->render($base_url . 'Mail/mail.html.twig',
               ['items' => $form->getData()]), HEADER);
           }
         }
       }
+      // enregistrement en base, c'est ici qu'il faut agir si vous souhaitez modifier
+      // vos données avant enregistrement.
       if (CONFIG['db_register']) {
         $em->persist($entity);
         $em->flush($entity);
       }
+      //ne pas modifier si vous souhaitez ajouter un tracker.
       $app['session']->set("datas", [
         "mail" => $form[NAME['mail']]->getData(),
         "nom"  => $form[NAME['nom']]->getData(),
       ]);
-      $retour = $app->redirect($app["url_generator"]->generate($url_base . "_confirmation"));
+      $retour = $app->redirect($app["url_generator"]->generate($base_url . "_confirmation"));
     } else {
-//      Message si erreur
+      // Message si erreur
       $app['session']->getFlashBag()
         ->add('notice', 'Le formulaire comporte des erreurs');
     }
@@ -92,36 +101,22 @@ function landingController(Symfony\Component\HttpFoundation\Request $request, Si
  */
 function dataExportCsv(Silex\Application $app, $landing)
 {
-  $temp = [];
+  $arr = [];
   $datas = _getAllDatas($app, $landing);
+  $object = _getEntity($landing);
+  $functions = preg_grep('/^get/', get_class_methods($object));
   $encoders = [new XmlEncoder(), new JsonEncoder(), new CsvEncoder()];
   $normalizers = [new ObjectNormalizer()];
   $serializer = new Serializer($normalizers, $encoders);
   foreach ($datas as $key => $data) {
-    $temp[$key] = $data->getInfos();
+    $temp = [];
+    foreach ($functions as $function) {
+      $temp[explode("get", $function)[1]] = $data->$function();
+    }
+    $arr[] = $temp;
   }
-  $csv = $serializer->serialize($temp, "csv");
+  $csv = $serializer->serialize($arr, "csv");
   return $csv;
-}
-
-/**
- * Permet de récuperer toutes les entrées en base.
- *
- * @param $app
- * @param $landing
- *
- * @return mixed
- */
-function _getAllDatas($app, $landing)
-{
-  $em = $app['orm.em'];
-  switch ($landing) {
-    case  "landing_1":
-      $repository = $em->getRepository(Landing::class);
-      break;
-  }
-  $result = $repository->findBy([], ["id" => "ASC"]);
-  return $result;
 }
 
 /**
@@ -134,7 +129,7 @@ function _getAllDatas($app, $landing)
  */
 function confirmation($app, $landing)
 {
-  $url_base = _geturlBase($landing);
+  $url_base = _getBaseUrl($landing);
   return $app['twig']->render($url_base . '/confirmation.html.twig');
 }
 
@@ -146,7 +141,7 @@ function confirmation($app, $landing)
  *
  * @return string
  */
-function _geturlBase($landing)
+function _getBaseUrl($landing)
 {
   switch ($landing) {
     case  "1":
@@ -168,6 +163,9 @@ function _getEntity($landing)
   switch ($landing) {
     case  "1":
       $entity = new Landing();
+      break;
+    case "votre_guide":
+      $entity = new LandingVotreGuide();
       break;
   }
   return $entity;
@@ -193,5 +191,25 @@ function _getFormBuilder($app, $landing, $entity = NULL)
       $result = $app['form.factory']->createBuilder(landingType::class, NULL);
       break;
   }
+  return $result;
+}
+
+/**
+ * Permet de récuperer toutes les entrées en base.
+ *
+ * @param $app
+ * @param $landing
+ *
+ * @return mixed
+ */
+function _getAllDatas($app, $landing)
+{
+  $em = $app['orm.em'];
+  switch ($landing) {
+    case  "landing_1":
+      $repository = $em->getRepository(Landing::class);
+      break;
+  }
+  $result = $repository->findBy([], ["id" => "ASC"]);
   return $result;
 }
