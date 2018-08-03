@@ -50,8 +50,10 @@ function landingController(Symfony\Component\HttpFoundation\Request $request, Si
   $form = $formBuilder->getForm();
   $form->handleRequest($request);
   //variable correspondant à la page de retour (pour l'instant la page d'atterissage).
-  $retour = $app['twig']->render($base_url . '/landing.html.twig', ['form'       => $form->createView(),
-                                                                    'parameters' => $parameters]);
+  $retour = $app['twig']->render($base_url . '/landing.html.twig', [
+    'form'       => $form->createView(),
+    'parameters' => $parameters,
+  ]);
   if ($form->isSubmitted()) {
     if ($form->isValid() && time()) {
       //Si il y à des envoies de mail
