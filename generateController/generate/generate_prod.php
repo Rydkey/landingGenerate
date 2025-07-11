@@ -29,7 +29,7 @@ $db_config=[
 }
 
 /**
- * Ajoute les lignes convernant l'envoie de mail.
+ * Ajoute les lignes par rapport à l'envoi de mail.
  * @param $mail
  */
 function add_mail($mail)
@@ -48,7 +48,7 @@ $mail_bool=[
 }
 
 /**
- * ajoute les booléen indiquant si le champs est présent ou non.
+ * ajoute les booléens indiquant si le champs est présent ou non.
  * @param $field
  */
 function add_field($field)
@@ -67,7 +67,7 @@ $f_name[\'' . $key . '\']=\'' . $v . '\';
 }
 
 /**
- * Ajoute les champs nécessaire au fonctionnement du formulaire
+ * Ajoute les champs nécessaires au fonctionnement du formulaire
  * @param $bdd
  * @param $mail
  */
